@@ -3,43 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقعي الأول</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-        }
-        header {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        section {
-            padding: 20px;
-            text-align: center;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+    <title>Engineer Mora</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- زر تبديل الوضع -->
+    <button id="darkModeToggle" class="dark-mode-btn">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- رأس الصفحة -->
     <header>
-        <h1>مرحبًا بكم في موقعي</h1>
+        <h1>مرحبا بك في عالمي </h1>
+        <p>تعرف على المزيد عني هنا!</p>
     </header>
-    <section>
-        <p>هذا أول موقع أقوم ببرمجته يدويًا.</p>
+
+    <!-- قسم معلومات عني -->
+    <section id="about">
+        <h2>معلومات عني</h2>
+        <p>أنا [اسمك]، مطور ويب ومهتم بالتقنيات الحديثة. أحب إنشاء مشاريع ومشاركة أفكاري مع العالم.</p>
     </section>
-    <footer>
-        <p>&copy; 2025 موقعي الأول</p>
-    </footer>
+
+    <!-- قسم الحسابات -->
+    <section id="accounts">
+        <h2>حساباتي</h2>
+        <ul>
+            <li><a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i> فيسبوك</a></li>
+            <li><a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> تويتر</a></li>
+            <li><a href="http://github.com/morasaber1" target="_blank"><i class="fab fa-github"></i> جيت هب</a></li>
+            <li><a href="https://www.instagram.com/mora_amr1/" target="_blank"><i class="fab fa-instagram"></i> لينكد إن</a></li>
+        </ul>
+    </section>
+
+    <!-- قسم التفاعلات -->
+    <section id="effects">
+        <h2>جرب التفاعلات</h2>
+        <button id="interactBtn">اضغط هنا</button>
+        <p id="effectMessage"></p>
+    </section>
+
+    <!-- سكربت جافا سكربت -->
+    <script src="script.js"></script>
 </body>
 </html>
