@@ -13,7 +13,7 @@ body {
 .dark-mode-btn {
     position: fixed;
     top: 20px;
-    right: 20px;
+    right: 25px;
     background: #007bff;
     color: white;
     border: none;
@@ -26,7 +26,7 @@ body {
 }
 
 .dark-mode-btn:hover {
-    background: #061b31;
+    background: #010a13;
 }
 
 /* رأس الموقع */
@@ -51,7 +51,7 @@ h2 {
 
 /* الروابط */
 a {
-    color: #007bff;
+    color: #00ff0d;
     text-decoration: none;
     font-size: 18px;
 }
@@ -78,6 +78,14 @@ section.dark-mode {
     background: #444;
     color: #f9f9f9;
 }
+
+img {
+    width: 10%;
+    height: 10%;
+    border-radius: 100px;
+    margin: 100px 200;
+}
+
 
 /* الأيقونات */
 ul {
