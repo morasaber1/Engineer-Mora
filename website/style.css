@@ -1,0 +1,102 @@
+/* إعدادات أساسية */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* زر الوضع الداكن */
+.dark-mode-btn {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s;
+}
+
+.dark-mode-btn:hover {
+    background: #010a13;
+}
+
+/* رأس الموقع */
+header {
+    text-align: center;
+    background-color: #010d1a;
+    color: white;
+    padding: 20px;
+}
+
+section {
+    padding: 20px;
+    margin: 20px;
+    background: #111111;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #007bff;
+}
+
+/* الروابط */
+a {
+    color: #00ff0d;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* الوضع الداكن */
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #ddd;
+}
+
+header.dark-mode {
+    background-color: #444;
+}
+
+section.dark-mode {
+    background-color: #2a2a2a;
+}
+
+.dark-mode-btn.dark-mode {
+    background: #444;
+    color: #f9f9f9;
+}
+
+img {
+    width: 10%;
+    height: 10%;
+    border-radius: 100px;
+    margin: 100px 200;
+}
+
+
+/* الأيقونات */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+i {
+    margin-right: 10px;
+}
