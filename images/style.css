@@ -1,0 +1,83 @@
+/* إعدادات أساسية */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #26272b;
+    color: #c40000;
+    line-height: 1;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* رأس الموقع */
+header {
+    text-align: center;
+    color: rgb(209, 195, 0);
+    padding: 10px;
+}
+
+section {
+    padding: 20px;
+    margin: 20px;
+    background: #1a17176e;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgb(107, 1, 1);
+}
+
+h1 {
+padding: 10px; /* مساحة بين النص والحافة */
+font-size: 3rem; /* حجم النص */
+}
+
+h2 {
+    color: #04a30ce1;
+}
+
+h3 {
+    color: #0407a3e1;
+}
+
+h4 {
+    color: #044913e1;
+}
+
+h5 {
+    color: #a30404e1;
+}
+
+h6 {
+    color: #0407a3e1;
+}
+
+/* الروابط */
+a {
+    color: #ff8800;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    width: 15%;
+    height: 15%;
+    border-radius: 15px;
+    margin: 15px 0;
+    max-width: 15%;
+}
+
+/* الأيقونات */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+i {
+    margin-right: 10px;
+}

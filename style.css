@@ -1,0 +1,46 @@
+section {
+    padding: 20px;
+    margin: 20px;
+    background: #1a17176e;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgb(107, 1, 1);
+}
+
+
+h1 {
+    color: rgb(255, 196, 0);
+}
+
+h2 {
+    color: #ff0000;
+    font-size: 30px;
+    text-shadow: #b41d1d;
+}
+
+h3 {
+    color: rgb(255, 196, 0);
+}
+
+p {
+    color: #008b13;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+nav {
+    color: #ff0000;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+i {
+    color: #ff0000;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+img {
+    width: 150%;
+    height: 150%;
+    border-radius: 10px;
+}
