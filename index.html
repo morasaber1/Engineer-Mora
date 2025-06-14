@@ -1,126 +1,221 @@
-<html lang="ar">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title> Engineer Mora 👨‍💻</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&amp;display=swap" rel="stylesheet"/>
-    <link 
-        rel="preload"
-        as="style"
-        onload="this.onload=null;this.rel='stylesheet'"
-        href="./styles/style.css"
-        />
-    <link rel="icon" type="images/png" href="images/favicon.png">
-    <script src="https://cdn.tailwindcss.com">
-    </script>
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: hsl(244, 100%, 22%);
-        }
-        .video-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-        .content {
-            position: relative;
-            z-index: 1;
-        }
-
-    body {
-            font-family: 'Cairo', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .video-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-        .content {
-            position: relative;
-            z-index: 1;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملفي الشخصي | عرض الأعمال</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <video autoplay="" class="video-bg" loop="" muted="">
-    <source src="background.mp4" type="video/mp4"/>
-
-
-    </video>
-        <div class="content">
-        <header class="bg-gray-800 text-white py-4">
-        <div class="container mx-auto text-center">
-        <h1 class="text-3xl font-bold">Engineer Mora</h1>
-        <nav class="flex justify-center gap-4 mt-4">
-        <a class="text-xl flex items-center gap-2" href="#profile">
-        <i class="fas fa-user">
-        </i>الملف الشخصي</a>
-        <a class="text-xl flex items-center gap-2" href="#gallery">
-        <i class="fas fa-images">
-        </i>معرض الصور</a>
-        <a class="text-xl flex items-center gap-2" href="#contact">
-        <i class="fas fa-envelope">
-        </i>تواصل معي</a>
+    <header>
+        <nav>
+            <div class="logo">اسمي</div>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#about">عنّي</a></li>
+                <li><a href="#portfolio">أعمالي</a></li>
+                <li><a href="#skills">مهاراتي</a></li>
+                <li><a href="#contact">تواصل معي</a></li>
+            </ul>
+            <div class="burger">
+                <i class="fas fa-bars"></i>
+            </div>
         </nav>
-    </div>
+    </header>
 
-</header>
-    <div class="container mx-auto mt-8 px-4">
-    <section class="profile text-center" id="profile">
-    <img alt="صورة شخصية لرجل يرتدي بدلة" class="rounded-full w-36 h-36 mx-auto" src="images/1.jpg"/>
-    <h2 class="text-2xl font-bold mt-4">عمرو صابر عبدالفتاح عبدالحكيم</h2>
-    <p>أنا مطور ويب ومصمم جرافيكي ومهندس برمجيات</p>
-    <p>أنا أعيش في مصر وأحب البرمجة والتصميم</p>
-    </section>
-
-    <section class="gallery mt-8" id="gallery">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <img alt="صورة 1" class="w-full h-48 object-cover" src="images/2.jpg"/>
-        <img alt="صورة 2" class="w-full h-48 object-cover" src="images/3.jpg"/>
-        <img alt="صورة 3" class="w-full h-48 object-cover" src="images/4.jpg"/>
-        <img alt="صورة 4" class="w-full h-48 object-cover" src="images/5.jpg"/>
-        <img alt="صورة 5" class="w-full h-48 object-cover" src="images/6.JPG"/>
-        <img alt="صورة 6" class="w-full h-48 object-cover" src="images/7.jpg"/>
-    </div>
-    </section>
-    <section class="contact text-center mt-8" id="contact">
-        <h3 class="text-2xl font-bold">تواصل معي</h2>
-        <p>يمكنك التواصل معي عبر الروابط التالية عن طريق الضغطت علي الأيقونة</p>
-    <div class="flex justify-center gap-4 mt-4">
-            <a class="text-3xl text-gray-800" href="https://wa.me/+01020497596" target="_blank">
-            <i class="fab fa-whatsapp">
-            </i>
-        </a>
-        <a class="text-3xl text-gray-800" href="http://github.com/morasaber1" target="_blank">
-            <i class="fab fa-github">
-            </i>
-        </a>
-        <a class="text-3xl text-gray-800" href="https://www.instagram.com/mora_amr1/" target="_blank">
-            <i class="fab fa-instagram">
-            </i>
-        </a>
-        <a class="text-3xl text-gray-800" href="https://t.me/mora_saber" target="_blank">
-            <i class="fab fa-telegram">
-            </i>
-        </a>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>مرحباً، أنا <span>اسمك</span></h1>
+            <p>مختص في [مجالك] | [سنوات الخبرة] سنوات خبرة</p>
+            <a href="#portfolio" class="btn">شاهد أعمالي</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://via.placeholder.com/400" alt="صورتي الشخصية">
         </div>
     </section>
+
+    <section id="about" class="about">
+        <h2>عنّي</h2>
+        <div class="about-container">
+            <div class="about-image">
+                <img src="https://via.placeholder.com/300" alt="عنّي">
+            </div>
+            <div class="about-content">
+                <p>أنا [اسمك]، أعمل في مجال [مجالك] منذ [عدد] سنوات. لدي شغف كبير بـ [مجال تخصصك] وأسعى دائماً لتقديم أفضل الحلول لعملائي.</p>
+                <p>خلال مسيرتي المهنية، عملت مع [عدد] عميل ونجحت في إنجاز [عدد] مشروع بنجاح.</p>
+                <div class="personal-info">
+                    <div>
+                        <span>الاسم:</span>
+                        <span>اسمك الكامل</span>
+                    </div>
+                    <div>
+                        <span>البريد:</span>
+                        <span>example@email.com</span>
+                    </div>
+                    <div>
+                        <span>العمر:</span>
+                        <span>XX سنة</span>
+                    </div>
+                    <div>
+                        <span>من:</span>
+                        <span>مدينتك، بلدك</span>
+                    </div>
+                </div>
+                <a href="#" class="btn">تحميل السيرة الذاتية</a>
             </div>
         </div>
-    </body>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <h2>معرض أعمالي</h2>
+        <div class="filter-buttons">
+            <button class="active" data-filter="all">الكل</button>
+            <button data-filter="web">مواقع ويب</button>
+            <button data-filter="app">تطبيقات</button>
+            <button data-filter="design">تصاميم</button>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item" data-category="web">
+                <img src="https://via.placeholder.com/300" alt="مشروع 1">
+                <div class="overlay">
+                    <h3>مشروع موقع ويب</h3>
+                    <p>وصف قصير للمشروع</p>
+                    <a href="#" class="view-project">عرض المشروع</a>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="app">
+                <img src="https://via.placeholder.com/300" alt="مشروع 2">
+                <div class="overlay">
+                    <h3>تطبيق جوال</h3>
+                    <p>وصف قصير للمشروع</p>
+                    <a href="#" class="view-project">عرض المشروع</a>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="design">
+                <img src="https://via.placeholder.com/300" alt="مشروع 3">
+                <div class="overlay">
+                    <h3>تصميم شعار</h3>
+                    <p>وصف قصير للمشروع</p>
+                    <a href="#" class="view-project">عرض المشروع</a>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="web">
+                <img src="https://via.placeholder.com/300" alt="مشروع 4">
+                <div class="overlay">
+                    <h3>موقع تجارة إلكترونية</h3>
+                    <p>وصف قصير للمشروع</p>
+                    <a href="#" class="view-project">عرض المشروع</a>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="app">
+                <img src="https://via.placeholder.com/300" alt="مشروع 5">
+                <div class="overlay">
+                    <h3>تطبيق إدارة</h3>
+                    <p>وصف قصير للمشروع</p>
+                    <a href="#" class="view-project">عرض المشروع</a>
+                </div>
+            </div>
+            <div class="portfolio-item" data-category="design">
+                <img src="https://via.placeholder.com/300" alt="مشروع 6">
+                <div class="overlay">
+                    <h3>هوية بصرية</h3>
+                    <p>وصف قصير للمشروع</p>
+                    <a href="#" class="view-project">عرض المشروع</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2>مهاراتي</h2>
+        <div class="skills-container">
+            <div class="skill">
+                <div class="skill-info">
+                    <span>HTML</span>
+                    <span>90%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 90%;"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <div class="skill-info">
+                    <span>CSS</span>
+                    <span>85%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 85%;"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <div class="skill-info">
+                    <span>JavaScript</span>
+                    <span>75%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 75%;"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <div class="skill-info">
+                    <span>التصميم</span>
+                    <span>80%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 80%;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>تواصل معي</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>ابقى على تواصل</h3>
+                <p>إذا كان لديك أي استفسار أو ترغب في التعاون معي، لا تتردد في التواصل.</p>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>example@email.com</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+1234567890</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>مدينتك، بلدك</span>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-behance"></i></a>
+                </div>
+            </div>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="اسمك" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="بريدك الإلكتروني" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="الموضوع">
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="رسالتك" required></textarea>
+                </div>
+                <button type="submit" class="btn">إرسال الرسالة</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 جميع الحقوق محفوظة | اسمك</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>
