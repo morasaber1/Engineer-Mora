@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام التسجيل والدخول</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container" id="loginFormContainer">
+            <div class="header">
+                <h1>تسجيل الدخول</h1>
+                <p>مرحباً بعودتك! يرجى إدخال بياناتك</p>
+            </div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">اسم المستخدم</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" name="username" placeholder="أدخل اسم المستخدم" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور" required>
+                        <i class="fas fa-eye toggle-password" onclick="togglePassword('password')"></i>
+                    </div>
+                </div>
+                
+                <div class="options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">تذكرني</label>
+                    </div>
+                    <a href="#" class="forgot-password" onclick="showForgotPassword()">نسيت كلمة المرور؟</a>
+                </div>
+                
+                <button type="submit" class="btn"><a href="websiet/index.html"></a>تسجيل الدخول</button>
+
+
+                
+                <div class="switch-form">
+                    <p>ليس لديك حساب؟ <a href="#" onclick="showRegisterForm()">إنشاء حساب جديد</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-container" id="registerFormContainer" style="display: none;">
+            <div class="header">
+                <h1>إنشاء حساب جديد</h1>
+                <p>املأ النموذج لإنشاء حساب جديد</p>
+            </div>
+            
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regUsername">اسم المستخدم</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="regUsername" name="regUsername" placeholder="أدخل اسم مستخدم جديد" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regEmail">البريد الإلكتروني</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="regEmail" name="regEmail" placeholder="أدخل بريدك الإلكتروني" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regPassword">كلمة المرور</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="regPassword" name="regPassword" placeholder="أنشئ كلمة مرور قوية" required>
+                        <i class="fas fa-eye toggle-password" onclick="togglePassword('regPassword')"></i>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regConfirmPassword">تأكيد كلمة المرور</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="regConfirmPassword" name="regConfirmPassword" placeholder="أعد كتابة كلمة المرور" required>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn">إنشاء حساب</button>
+                
+                <div class="switch-form">
+                    <p>لديك حساب بالفعل؟ <a href="#" onclick="showLoginForm()">تسجيل الدخول</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-container" id="forgotPasswordContainer" style="display: none;">
+            <div class="header">
+                <h1>استعادة كلمة المرور</h1>
+                <p>أدخل بياناتك لاستعادة كلمة المرور</p>
+            </div>
+            
+            <form id="forgotPasswordForm">
+                <div class="form-group">
+                    <label for="forgotUsername">اسم المستخدم</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="forgotUsername" name="forgotUsername" placeholder="أدخل اسم المستخدم" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="forgotEmail">البريد الإلكتروني</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="forgotEmail" name="forgotEmail" placeholder="أدخل البريد الإلكتروني المسجل" required>
+                    </div>
+                </div>
+                
+                <button type="button" class="btn" onclick="sendVerificationCode()">إرسال رمز التحقق</button>
+                
+                <div class="form-group" id="verificationCodeGroup" style="display: none;">
+                    <label for="verificationCode">رمز التحقق</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-key"></i>
+                        <input type="text" id="verificationCode" name="verificationCode" placeholder="أدخل الرمز الذي استلمته">
+                    </div>
+                </div>
+                
+                <div class="form-group" id="newPasswordGroup" style="display: none;">
+                    <label for="newPassword">كلمة المرور الجديدة</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="newPassword" name="newPassword" placeholder="أدخل كلمة مرور جديدة">
+                    </div>
+                </div>
+                
+                <button type="button" class="btn" id="resetPasswordBtn" style="display: none;" onclick="resetPassword()">تغيير كلمة المرور</button>
+                
+                <div class="switch-form">
+                    <p><a href="#" onclick="showLoginForm()">العودة إلى تسجيل الدخول</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="database.js"></script>
+</body>
+</html>
